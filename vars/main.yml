@@ -1,0 +1,4 @@
+---
+# vars file for openwga
+openwga_confdir: /etc/openwga
+openwga_root: /var/lib/openwga

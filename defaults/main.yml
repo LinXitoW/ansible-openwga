@@ -1,0 +1,5 @@
+---
+# defaults file for openwga
+openwga_edition: 'ce'
+openwga_version: '7.1'
+

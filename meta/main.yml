@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Marcel Riegler
+  description: a role to install OpenWGA
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - development
+  - web
+dependencies: 
+  - {role: "groover.java"}

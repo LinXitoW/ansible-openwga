@@ -1,0 +1,43 @@
+---
+# tasks file for openwga
+- name: add apt key
+  become: true
+  apt_key: url='http://download.openwga.com/deb/pub.asc' state=present
+
+- name: add apt source
+  become: true
+  apt_repository:
+    repo: 'deb http://download.openwga.com/deb {{ ansible_lsb.codename }} main'
+    state: present
+    update_cache: true
+
+- name: install package
+  become: true
+  apt: name='openwga{{ openwga_version }}-{{ openwga_edition }}' state=present
+
+- name: copy config
+  become: true
+  copy:
+    src: '{{ openwga_config }}'
+    dest: '{{ openwga_confdir }}'
+    owner: openwga
+    group: openwga
+    mode: 0664
+    force: true
+  when: openwga_config is defined
+
+- name: copy auth
+  become: true
+  copy:
+    src: '{{ openwga_auth }}'
+    dest: '{{ openwga_root }}'
+    owner: openwga
+    group: openwga
+    mode: 0664
+  when: openwga_auth is defined
+
+- name: start service
+  service: name=openwga state=started
+
+
+

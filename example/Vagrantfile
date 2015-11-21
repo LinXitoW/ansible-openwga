@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+if ["up"].include?(ARGV.first)
+  system("sudo ansible-galaxy install -r requirements.yml --ignore-errors")
+end
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "test.yml"
+  end
+end
