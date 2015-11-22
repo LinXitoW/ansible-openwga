@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 if ["up"].include?(ARGV.first)
-  system("sudo ansible-galaxy install -r requirements.yml --ignore-errors")
+  system("sudo ansible-galaxy install -r ../requirements.yml --ignore-errors")
 end
 
 Vagrant.configure(2) do |config|
